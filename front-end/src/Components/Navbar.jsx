@@ -17,7 +17,7 @@ export default function Navbar() {
     <>
       <StyledNavBar>
         <div>
-          <img src="http://localhost:3001/images/Logo.svg" alt="Logo" width="75px" />
+          <img src="http://localhost:3001/images/Logo-fundo-cinza.svg" alt="Logo" width="75px" />
           {userRole === 'customer' && (
             <Link
               to="/customer/products"

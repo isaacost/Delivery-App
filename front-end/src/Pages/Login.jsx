@@ -42,7 +42,7 @@ function Login({ history }) {
 
   return (
     <ContainerLogin>
-      <img src="http://localhost:3001/images/Logo.svg" alt="Logo" width="300px" />
+      <img src="http://localhost:3001/images/Logo-fundo-cinza.svg" alt="Logo" width="300px" />
       <form>
         <Input
           type="email"
