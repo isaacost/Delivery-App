@@ -31,7 +31,6 @@ export default function Products({ history }) {
 
   return (
     <div>
-      <h1>Products</h1>
       <Navbar />
       {dataProducts.map(({ id, name, price, urlImage }) => (
         <ProductCard

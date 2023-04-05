@@ -18,7 +18,6 @@ time, mark, audio, video {
     padding: 0;
     border: 0;
     font-size: 100%;
-    font: inherit;
     vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -28,7 +27,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
     line-height: 1;
-    background-color: #212529
+    background-color: #212529;
+    color: white;
 }
 ol, ul {
     list-style: none;

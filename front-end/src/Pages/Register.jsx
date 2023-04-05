@@ -5,6 +5,7 @@ import Input from '../Components/Input';
 import { postRequest, setToken } from '../Utils/axios';
 import { saveUser } from '../Utils/LocalStorage';
 import verifyFields from '../Utils/validateFields';
+import ContainerLogin from './CSS/ContainerLogin';
 
 function Register() {
   const MIN_LENGTH_NAME = 12;
@@ -41,8 +42,8 @@ function Register() {
   };
 
   return (
-    <div>
-      <h1>Cadastro</h1>
+    <ContainerLogin>
+      <img src="http://localhost:3001/images/Logo.svg" alt="Logo" width="300px" />
       <form>
         <Input
           type="text"
@@ -76,6 +77,9 @@ function Register() {
           text="Cadastrar"
           dataTestId="common_register__button-register"
           disabled={ isDisable }
+          textColor="black"
+          backgroundColor="#80c423"
+          border="2px solid black"
         />
 
       </form>
@@ -89,7 +93,7 @@ function Register() {
       }
       {isRegistered && <Redirect to="/customer/products" />}
 
-    </div>
+    </ContainerLogin>
   );
 }
 

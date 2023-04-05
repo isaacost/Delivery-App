@@ -2,40 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Button from '../Components/Button';
 import Input from '../Components/Input';
 import { postRequest, setToken } from '../Utils/axios';
 import verifyFields, { getUserRoute } from '../Utils/validateFields';
 import { saveUser } from '../Utils/LocalStorage';
-
-const ContainerLogin = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  gap: 8px;
-  img {
-    width: 22vw;
-    min-width: 200px
-  };
-  form {
-    min-width: 220px;
-    min-height: 220px;
-    width: 20vw;
-    height: 22vh;
-    background-color: #495057;
-    border-radius: 4px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  p {
-    color: white;
-  }
-`;
+import ContainerLogin from './CSS/ContainerLogin';
 
 function Login({ history }) {
   const [email, setEmail] = useState('');

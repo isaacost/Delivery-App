@@ -1,17 +1,5 @@
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-const StyledButton = styled.button`
-    width: 100%;
-    border-radius: 0.4em;
-    height: 3em;
-    &:hover {
-      opacity: 0.7;
-    }
-    &:disabled {
-      opacity: 0.3;
-    }
-  `;
+import StyledButton from './CSS/StyledButton';
 
 function Button({
   onClick,
@@ -40,6 +28,9 @@ function Button({
 Button.propTypes = {
   onClick: PropTypes.func,
   text: PropTypes.string,
+  textColor: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  border: PropTypes.string,
 }.isRequired;
 
 export default Button;

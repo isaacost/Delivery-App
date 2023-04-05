@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getUser, logout } from '../Utils/LocalStorage';
+import StyledNavBar from './CSS/StyledNavBar';
 
 export default function Navbar() {
   const [userName, setUserName] = useState('');
@@ -13,33 +14,35 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav>
+    <StyledNavBar>
+      <img src="http://localhost:3001/images/Logo.svg" alt="Logo" width="75px" />
       {userRole === 'customer' && (
-        <NavLink
+
+        <Link
           to="/customer/products"
           data-testid="customer_products__element-navbar-link-products"
         >
           PRODUTOS
 
-        </NavLink>
+        </Link>
 
       )}
       { (userRole === 'customer' || userRole === 'seller') && (
-        <NavLink
+        <Link
           to={ `/${userRole}/orders` }
           data-testid="customer_products__element-navbar-link-orders"
         >
           { userRole === 'customer' ? 'MEUS PEDIDOS' : 'PEDIDOS' }
-        </NavLink>
+        </Link>
       )}
       {userRole === 'administrator' && (
-        <NavLink
+        <Link
           to="/admin/manage"
           data-testid="customer_products__element-navbar-link-products"
         >
           GERENCIAR USUÁRIOS
 
-        </NavLink>
+        </Link>
 
       )}
       <p
@@ -47,13 +50,13 @@ export default function Navbar() {
       >
         { userName }
       </p>
-      <NavLink
+      <Link
         to="/login"
         data-testid="customer_products__element-navbar-link-logout"
         onClick={ () => logout() }
       >
         SAIR
-      </NavLink>
-    </nav>
+      </Link>
+    </StyledNavBar>
   );
 }
