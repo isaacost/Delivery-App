@@ -5,6 +5,14 @@ const StyledNavBar = styled.nav`
   justify-content: space-between;
   align-items: center;
   height: 10vh;
+  background-color: #212529;
+  font-size: 1.4em;
+  font-weight: 900;
+  padding: 0 15px;
+  div {
+    display: flex;
+    height: 100%;
+  }
   a {
     padding: 0px 10px;
     display: flex;
@@ -12,11 +20,11 @@ const StyledNavBar = styled.nav`
     justify-content: space-between;
     text-decoration: none;
     color: white;
-    weight: bold;
-    background-color: #995bd5;
     height: 100%;
+    &:hover {
+      opacity: 0.6;
+    }
   }
-  margin-bottom: 15px;
 `;
 
 export default StyledNavBar;

@@ -4,6 +4,7 @@ import Navbar from '../Components/Navbar';
 import ProductCard from '../Components/ProductCard';
 import { getRequest } from '../Utils/axios';
 import { getProductsCart, saveTotalPrice } from '../Utils/LocalStorage';
+import ContainerProducts from './CSS/ContainerProducts';
 
 export default function Products({ history }) {
   const [dataProducts, setDataProducts] = useState([]);
@@ -30,30 +31,36 @@ export default function Products({ history }) {
   }, [cartProduct]);
 
   return (
-    <div>
+    <ContainerProducts>
       <Navbar />
-      {dataProducts.map(({ id, name, price, urlImage }) => (
-        <ProductCard
-          key={ id }
-          id={ id }
-          productName={ name }
-          price={ price }
-          urlImage={ urlImage }
-          forceRender={ setEditionCount }
-        />
-      ))}
+      <div
+        id="products-container"
+      >
+        {dataProducts.map(({ id, name, price, urlImage }) => (
+          <ProductCard
+            key={ id }
+            id={ id }
+            productName={ name }
+            price={ price }
+            urlImage={ urlImage }
+            forceRender={ setEditionCount }
+          />
+        ))}
+      </div>
       <button
+        id="button-checkout"
         type="button"
         data-testid="customer_products__button-cart"
         onClick={ () => history.push('/customer/checkout') }
         disabled={ cartProduct.length === 0 }
       >
-        Ver carrinho:R$
+        Total:
+        <br />
         <span data-testid="customer_products__checkout-bottom-value">
-          {totalPrice}
+          {`R$${totalPrice}`}
         </span>
       </button>
-    </div>
+    </ContainerProducts>
   );
 }
 

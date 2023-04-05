@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import Button from './Button';
 import { managerProductCart, getProductsCart } from '../Utils/LocalStorage';
 import formatValues from '../Utils/normalize';
+import StyledProductCard from './CSS/StyledProductCard';
 
 export default function ProductCard(product) {
   const { id, productName, price, urlImage, forceRender } = product;
   const [quantity, setQuantity] = useState(0);
-  // commit
+
   useEffect(() => {
     const products = getProductsCart() || [];
     const quantityProduct = products.find((p) => p.id === id)?.quantity || 0;
@@ -39,7 +40,7 @@ export default function ProductCard(product) {
   };
 
   return (
-    <div>
+    <StyledProductCard>
       <h3
         data-testid={ `customer_products__element-card-title-${id}` }
       >
@@ -48,7 +49,6 @@ export default function ProductCard(product) {
       <img
         src={ urlImage }
         alt={ productName }
-        style={ { width: '50px' } }
         data-testid={ `customer_products__img-card-bg-image-${id}` }
       />
       <p>
@@ -59,30 +59,38 @@ export default function ProductCard(product) {
           { formatValues(price) }
         </span>
       </p>
-      <Button
-        onClick={ changeCart }
-        dataTestId={ `customer_products__button-card-add-item-${id}` }
-        disable={ false }
-        nameButton="add"
-        text="+"
-      />
-      <input
-        data-testid={ `customer_products__input-card-quantity-${id}` }
-        type="number"
-        name="input_card_quantity"
-        onChange={ handleChange }
-        id={ `product-${id}` }
-        min="0"
-        value={ quantity }
-      />
-      <Button
-        onClick={ changeCart }
-        dataTestId={ `customer_products__button-card-rm-item-${id}` }
-        disabled={ quantity <= 0 }
-        nameButton="sub"
-        text="-"
-      />
-    </div>
+      <div>
+        <Button
+          onClick={ changeCart }
+          dataTestId={ `customer_products__button-card-rm-item-${id}` }
+          disabled={ quantity <= 0 }
+          nameButton="sub"
+          text="-"
+          textColor="white"
+          backgroundColor="darkred"
+          border="none"
+        />
+        <input
+          data-testid={ `customer_products__input-card-quantity-${id}` }
+          type="number"
+          name="input_card_quantity"
+          onChange={ handleChange }
+          id={ `product-${id}` }
+          min="0"
+          value={ quantity }
+        />
+        <Button
+          onClick={ changeCart }
+          dataTestId={ `customer_products__button-card-add-item-${id}` }
+          disable={ false }
+          nameButton="add"
+          text="+"
+          textColor="white"
+          backgroundColor="green"
+          border="none"
+        />
+      </div>
+    </StyledProductCard>
   );
 }
 

@@ -14,49 +14,49 @@ export default function Navbar() {
   }, []);
 
   return (
-    <StyledNavBar>
-      <img src="http://localhost:3001/images/Logo.svg" alt="Logo" width="75px" />
-      {userRole === 'customer' && (
-
-        <Link
-          to="/customer/products"
-          data-testid="customer_products__element-navbar-link-products"
+    <>
+      <StyledNavBar>
+        <div>
+          <img src="http://localhost:3001/images/Logo.svg" alt="Logo" width="75px" />
+          {userRole === 'customer' && (
+            <Link
+              to="/customer/products"
+              data-testid="customer_products__element-navbar-link-products"
+            >
+              PRODUTOS
+            </Link>
+          )}
+          { (userRole === 'customer' || userRole === 'seller') && (
+            <Link
+              to={ `/${userRole}/orders` }
+              data-testid="customer_products__element-navbar-link-orders"
+            >
+              { userRole === 'customer' ? 'MEUS PEDIDOS' : 'PEDIDOS' }
+            </Link>
+          )}
+          {userRole === 'administrator' && (
+            <Link
+              to="/admin/manage"
+              data-testid="customer_products__element-navbar-link-products"
+            >
+              GERENCIAR USUÁRIOS
+            </Link>
+          )}
+        </div>
+        <p
+          data-testid="customer_products__element-navbar-user-full-name"
         >
-          PRODUTOS
-
-        </Link>
-
-      )}
-      { (userRole === 'customer' || userRole === 'seller') && (
+          { userName }
+        </p>
         <Link
-          to={ `/${userRole}/orders` }
-          data-testid="customer_products__element-navbar-link-orders"
+          to="/login"
+          data-testid="customer_products__element-navbar-link-logout"
+          onClick={ () => logout() }
         >
-          { userRole === 'customer' ? 'MEUS PEDIDOS' : 'PEDIDOS' }
+          SAIR
         </Link>
-      )}
-      {userRole === 'administrator' && (
-        <Link
-          to="/admin/manage"
-          data-testid="customer_products__element-navbar-link-products"
-        >
-          GERENCIAR USUÁRIOS
-
-        </Link>
-
-      )}
-      <p
-        data-testid="customer_products__element-navbar-user-full-name"
-      >
-        { userName }
-      </p>
-      <Link
-        to="/login"
-        data-testid="customer_products__element-navbar-link-logout"
-        onClick={ () => logout() }
-      >
-        SAIR
-      </Link>
-    </StyledNavBar>
+      </StyledNavBar>
+      <hr style={ { marginBottom: '20px' } } />
+    </>
   );
 }
