@@ -6,6 +6,7 @@ import UserTable from '../Components/UserTable';
 import { getRequest, postRequest } from '../Utils/axios';
 import verifyFields from '../Utils/validateFields';
 import { getUser } from '../Utils/LocalStorage';
+import ContainerAdmin from './CSS/ContainerAdmin';
 
 function Admin() {
   const MIN_LENGTH_NAME = 12;
@@ -67,71 +68,74 @@ function Admin() {
   };
 
   return (
-    <div>
+    <ContainerAdmin>
       <Navbar />
-      <h1>Cadastrar novo usuário</h1>
-      <form>
-        <Input
-          type="text"
-          placeholder="Seu nome"
-          label="Nome"
-          onChange={ ({ target: { value } }) => setUserName(value) }
-          dataTestId="admin_manage__input-name"
-          id="name-input"
-          value={ userName }
-        />
-        <Input
-          type="email"
-          placeholder="email@email.com"
-          label="Email"
-          onChange={ ({ target: { value } }) => setEmail(value) }
-          dataTestId="admin_manage__input-email"
-          id="email-input"
-          value={ email }
-        />
-        <Input
-          type="password"
-          placeholder="*******"
-          label="Password"
-          onChange={ ({ target: { value } }) => setPassword(value) }
-          dataTestId="admin_manage__input-password"
-          id="password-input"
-          value={ password }
-        />
-        <label htmlFor="select">
-          Tipo
-          <select
-            id="select"
-            data-testid="admin_manage__select-role"
-            onChange={ ({ target }) => setUserRole(target.value) }
-          >
-            { arrayOptions.map(({ text, value }, index) => (
-              <option key={ index } value={ value }>{ text }</option>
-            )) }
-          </select>
-        </label>
-        <Button
-          onClick={ () => handleRegister() }
-          text="Cadastrar"
-          dataTestId="admin_manage__button-register"
-          disabled={ isDisable }
-        />
+      <div id="container-admin">
+        <h1>Cadastrar novo usuário</h1>
+        <form>
+          <Input
+            type="text"
+            placeholder="Seu nome"
+            label="Nome"
+            onChange={ ({ target: { value } }) => setUserName(value) }
+            dataTestId="admin_manage__input-name"
+            id="name-input"
+            value={ userName }
+          />
+          <Input
+            type="email"
+            placeholder="email@email.com"
+            label="Email"
+            onChange={ ({ target: { value } }) => setEmail(value) }
+            dataTestId="admin_manage__input-email"
+            id="email-input"
+            value={ email }
+          />
+          <Input
+            type="password"
+            placeholder="*******"
+            label="Password"
+            onChange={ ({ target: { value } }) => setPassword(value) }
+            dataTestId="admin_manage__input-password"
+            id="password-input"
+            value={ password }
+          />
+          <label htmlFor="select">
+            Tipo
+            <select
+              id="select"
+              data-testid="admin_manage__select-role"
+              onChange={ ({ target }) => setUserRole(target.value) }
+            >
+              { arrayOptions.map(({ text, value }, index) => (
+                <option key={ index } value={ value }>{ text }</option>
+              )) }
+            </select>
+          </label>
+          <Button
+            onClick={ () => handleRegister() }
+            text="Cadastrar"
+            dataTestId="admin_manage__button-register"
+            disabled={ isDisable }
+            backgroundColor="#80c423"
+          />
 
-      </form>
-      {
-        isIncorrectValues
+        </form>
+        {
+          isIncorrectValues
         && (
           <p data-testid="admin_manage__element-invalid-register">
             { errorMessage }
           </p>
         )
-      }
-      <UserTable
-        users={ users }
-        updateUsers={ setUsers }
-        filterUser={ filterOwnUser }
-      />
-    </div>
+        }
+        <UserTable
+          users={ users }
+          updateUsers={ setUsers }
+          filterUser={ filterOwnUser }
+        />
+      </div>
+    </ContainerAdmin>
   );
 }
 

@@ -5,6 +5,8 @@ import Navbar from '../Components/Navbar';
 import OrderDescription from '../Components/OrderDescription';
 import { getRequest, patchRequest } from '../Utils/axios';
 import formatValues, { formatDate } from '../Utils/normalize';
+import Button from '../Components/Button';
+import ContainerOrdersDetails from './CSS/ContainerOrderDetails';
 
 function OrderDetails({ history, match }) {
   const [products, setProducts] = useState([]);
@@ -47,69 +49,74 @@ function OrderDetails({ history, match }) {
   };
 
   return (
-    <div>
+    <ContainerOrdersDetails>
       <Navbar />
-      <div>
-        <p>
-          Pedido:
-          {' '}
-          <span
-            data-testid={ `${od}__element-order-details-label-order-id` }
-          >
-            {id}
-          </span>
-        </p>
-        { role === 'customer' && (
+      <div id="order-details">
+        <div>
           <p>
-            Vendedor:
+            Pedido:
             {' '}
             <span
-              data-testid={ `${od}__element-order-details-label-seller-name` }
+              data-testid={ `${od}__element-order-details-label-order-id` }
             >
-              {sellerName}
+              {id}
             </span>
           </p>
-        )}
-        <p
-          data-testid={ `${od}__element-order-details-label-order-date` }
-        >
-          {date}
-        </p>
-        <p
-          data-testid={ `${od}__element-order-details-label-delivery-status${id}` }
-        >
-          {status}
-        </p>
+          { role === 'customer' && (
+            <p>
+              Vendedor:
+              {' '}
+              <span
+                data-testid={ `${od}__element-order-details-label-seller-name` }
+              >
+                {sellerName}
+              </span>
+            </p>
+          )}
+          <p
+            data-testid={ `${od}__element-order-details-label-order-date` }
+          >
+            {date}
+          </p>
+          <p
+            data-testid={ `${od}__element-order-details-label-delivery-status${id}` }
+          >
+            {status}
+          </p>
+        </div>
         {role === 'customer' && (
-          <button
+          <Button
             type="button"
             onClick={ () => changeStatus('4') }
             data-testid="customer_order_details__button-delivery-check"
             disabled={ status !== arrayStatus[2] }
-
+            text="Marcar como entregue"
+            textColor="black"
+            backgroundColor="#80c423"
           >
             Marcar como entregue
-          </button>
+          </Button>
         )}
         {role === 'seller' && (
           <div>
-            <button
+            <Button
               type="button"
               onClick={ () => changeStatus('2') }
               data-testid="seller_order_details__button-preparing-check"
               disabled={ status !== arrayStatus[0] }
-            >
-              PREPARAR PEDIDO
-            </button>
-
-            <button
+              text="PREPARAR PEDIDO"
+              backgroundColor="#964b00"
+              textColor="white"
+            />
+            <Button
               type="button"
               onClick={ () => changeStatus('3') }
               data-testid="seller_order_details__button-dispatch-check"
               disabled={ status !== arrayStatus[1] }
-            >
-              SAIU PARA A ENTREGA
-            </button>
+              text="SAIU PARA A ENTREGA"
+              backgroundColor="#ffa500"
+              textColor="white"
+            />
           </div>
         )}
       </div>
@@ -118,7 +125,7 @@ function OrderDetails({ history, match }) {
         totalPrice={ totalPrice }
         orders={ products }
       />
-    </div>
+    </ContainerOrdersDetails>
   );
 }
 OrderDetails.propTypes = {

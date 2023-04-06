@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import formatValues, { formatDate } from '../Utils/normalize';
+import StyledOrderCard from './CSS/StyledOrderCard';
 
 function OrderCard({ id, status, saleDate, totalPrice, role, address, numberHouse }) {
   return (
-    <div>
+    <StyledOrderCard>
       <Link to={ `/${role}/orders/${id}` }>
         <div>
           <span
@@ -20,7 +21,7 @@ function OrderCard({ id, status, saleDate, totalPrice, role, address, numberHous
             {status}
           </span>
         </div>
-        <div>
+        <div id="data-and-total">
           <p
             data-testid={ `${role}_orders__element-order-date-${id}` }
           >
@@ -42,7 +43,7 @@ function OrderCard({ id, status, saleDate, totalPrice, role, address, numberHous
           </div>
         )}
       </Link>
-    </div>
+    </StyledOrderCard>
   );
 }
 

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { removeProductCart } from '../Utils/LocalStorage';
 import formatValues from '../Utils/normalize';
+import StyledTableOrder from './CSS/StyledTableOrder';
+import Button from './Button';
 
 function OrderDescription({ history, orders, totalPrice, updateCart }) {
   const { location: { pathname } } = history;
@@ -9,8 +11,10 @@ function OrderDescription({ history, orders, totalPrice, updateCart }) {
   const path = pathname.includes('checkout') ? 'checkout' : 'order_details';
 
   return (
-    <div>
-      Finalizar Pedido
+    <StyledTableOrder>
+      <h2>
+        Finalizar Pedido
+      </h2>
       <table>
         <thead>
           <tr>
@@ -20,7 +24,7 @@ function OrderDescription({ history, orders, totalPrice, updateCart }) {
             <th>Valor Unitário</th>
             <th>Sub-total</th>
             {path === 'checkout'
-            && <th>Remover Item</th>}
+            && <th id="excluir">Remover Item</th>}
           </tr>
         </thead>
         <tbody>
@@ -62,15 +66,17 @@ function OrderDescription({ history, orders, totalPrice, updateCart }) {
                   <td
                     data-testid={ `${role}_checkout__element-order-table-remove-${i}` }
                   >
-                    <button
+                    <Button
+                      textColor="white"
+                      backgroundColor="darkred"
+                      border="none"
+                      text="Remover"
                       type="button"
                       onClick={ () => {
                         removeProductCart({ id });
                         return updateCart();
                       } }
-                    >
-                      Remover
-                    </button>
+                    />
                   </td>)
               }
             </tr>
@@ -83,7 +89,7 @@ function OrderDescription({ history, orders, totalPrice, updateCart }) {
           {totalPrice}
         </span>
       </div>
-    </div>
+    </StyledTableOrder>
   );
 }
 

@@ -4,6 +4,7 @@ import Navbar from '../Components/Navbar';
 import OrderCard from '../Components/OrderCard';
 import { getUser } from '../Utils/LocalStorage';
 import { getRequest } from '../Utils/axios';
+import ContainerMyOrders from './CSS/ContainerMyOrders';
 
 function MyOrders() {
   const [orders, setOrders] = useState([]);
@@ -19,23 +20,25 @@ function MyOrders() {
     request();
   }, []);
   return (
-    <div>
+    <ContainerMyOrders>
       <Navbar />
-      {
-        orders.map((e) => (
-          <OrderCard
-            key={ e.id }
-            id={ e.id }
-            status={ e.status }
-            saleDate={ e.saleDate }
-            totalPrice={ e.totalPrice }
-            role={ userRole }
-            address={ e.deliveryAddress }
-            numberHouse={ e.deliveryNumber }
-          />
-        ))
-      }
-    </div>
+      <div id="orders-container">
+        {
+          orders.map((e) => (
+            <OrderCard
+              key={ e.id }
+              id={ e.id }
+              status={ e.status }
+              saleDate={ e.saleDate }
+              totalPrice={ e.totalPrice }
+              role={ userRole }
+              address={ e.deliveryAddress }
+              numberHouse={ e.deliveryNumber }
+            />
+          ))
+        }
+      </div>
+    </ContainerMyOrders>
   );
 }
 MyOrders.propTypes = {

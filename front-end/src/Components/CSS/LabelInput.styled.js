@@ -9,7 +9,7 @@ const LabelInput = styled.label`
     padding: 1px 0;
     text-align: center;
     height: 2em;
-    text: white;
+    color: white;
     background-color: #CCCCCC;
     border-radius: 0.40em;
     outline: none;

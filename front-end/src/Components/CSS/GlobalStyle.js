@@ -29,6 +29,7 @@ body {
     line-height: 1;
     background-color: #212529;
     color: white;
+    box-sizing: border-box;
 }
 ol, ul {
     list-style: none;

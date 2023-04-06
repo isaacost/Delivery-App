@@ -26,6 +26,9 @@ const ContainerLogin = styled.div`
   p {
     color: white;
   }
+  input {
+    color: black;
+  }
 `;
 
 export default ContainerLogin;

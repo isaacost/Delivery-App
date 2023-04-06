@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { deleteRequest, getRequest } from '../Utils/axios';
+import StyledTableOrder from './CSS/StyledTableOrder';
+import Button from './Button';
 
 export default function UserTable({ users, updateUsers, filterUser }) {
   const deleteUser = async (id) => {
@@ -10,7 +12,7 @@ export default function UserTable({ users, updateUsers, filterUser }) {
   };
 
   return (
-    <div>
+    <StyledTableOrder>
       <table>
         <thead>
           <tr>
@@ -26,7 +28,7 @@ export default function UserTable({ users, updateUsers, filterUser }) {
             <th>
               Tipo
             </th>
-            <th>
+            <th id="excluir">
               Excluir
             </th>
           </tr>
@@ -55,19 +57,20 @@ export default function UserTable({ users, updateUsers, filterUser }) {
                 {user.role}
               </td>
               <td>
-                <button
-                  type="button"
+                <Button
+                  textColor="white"
+                  backgroundColor="darkred"
+                  border="none"
+                  text="Remover"
                   onClick={ async () => deleteUser(user.id) }
                   data-testid={ `admin_manage__element-user-table-remove-${index}` }
-                >
-                  Excluir
-                </button>
+                />
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-    </div>
+    </StyledTableOrder>
   );
 }
 

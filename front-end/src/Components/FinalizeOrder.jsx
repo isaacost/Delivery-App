@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getRequest, postRequest } from '../Utils/axios';
 import { getUser, getProductsCart, getTotalPrice } from '../Utils/LocalStorage';
+import StyledFinalizeOrder from './CSS/StyledFinalizeOrder';
+import Button from './Button';
 
 function FinalizeOrder({ history }) {
   const [sellers, setSellers] = useState([]);
@@ -39,17 +41,21 @@ function FinalizeOrder({ history }) {
   }
 
   return (
-    <div>
+    <StyledFinalizeOrder>
       <h2>Detalhes e Endereço para Entrega</h2>
       <form>
-        <select
-          data-testid="customer_checkout__select-seller"
-          onChange={ ({ target }) => setSellerId(target.value) }
-        >
-          { sellers.map(({ id, name }, index) => (
-            <option key={ index } value={ id }>{ name }</option>
-          )) }
-        </select>
+        <label htmlFor="sellerName">
+          Vendedor
+          <select
+            id="sellerName"
+            data-testid="customer_checkout__select-seller"
+            onChange={ ({ target }) => setSellerId(target.value) }
+          >
+            { sellers.map(({ id, name }, index) => (
+              <option key={ index } value={ id }>{ name }</option>
+            )) }
+          </select>
+        </label>
         <label htmlFor="input-address">
           Endereço
           <input
@@ -68,15 +74,15 @@ function FinalizeOrder({ history }) {
             onChange={ ({ target }) => setNumber(target.value) }
           />
         </label>
-        <button
-          type="button"
-          data-testid="customer_checkout__button-submit-order"
-          onClick={ () => finishOrder() }
-        >
-          FINALIZAR PEDIDO
-        </button>
       </form>
-    </div>
+      <Button
+        type="button"
+        data-testid="customer_checkout__button-submit-order"
+        onClick={ () => finishOrder() }
+        text="FINALIZAR PEDIDO"
+        backgroundColor="#80c423"
+      />
+    </StyledFinalizeOrder>
   );
 }
 
