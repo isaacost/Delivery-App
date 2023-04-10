@@ -52,38 +52,36 @@ function OrderDetails({ history, match }) {
     <ContainerOrdersDetails>
       <Navbar />
       <div id="order-details">
-        <div>
+        <p>
+          Pedido:
+          {' '}
+          <span
+            data-testid={ `${od}__element-order-details-label-order-id` }
+          >
+            {id}
+          </span>
+        </p>
+        { role === 'customer' && (
           <p>
-            Pedido:
+            Vendedor:
             {' '}
             <span
-              data-testid={ `${od}__element-order-details-label-order-id` }
+              data-testid={ `${od}__element-order-details-label-seller-name` }
             >
-              {id}
+              {sellerName}
             </span>
           </p>
-          { role === 'customer' && (
-            <p>
-              Vendedor:
-              {' '}
-              <span
-                data-testid={ `${od}__element-order-details-label-seller-name` }
-              >
-                {sellerName}
-              </span>
-            </p>
-          )}
-          <p
-            data-testid={ `${od}__element-order-details-label-order-date` }
-          >
-            {date}
-          </p>
-          <p
-            data-testid={ `${od}__element-order-details-label-delivery-status${id}` }
-          >
-            {status}
-          </p>
-        </div>
+        )}
+        <p
+          data-testid={ `${od}__element-order-details-label-order-date` }
+        >
+          {date}
+        </p>
+        <p
+          data-testid={ `${od}__element-order-details-label-delivery-status${id}` }
+        >
+          {status}
+        </p>
         {role === 'customer' && (
           <Button
             type="button"
@@ -98,14 +96,14 @@ function OrderDetails({ history, match }) {
           </Button>
         )}
         {role === 'seller' && (
-          <div>
+          <>
             <Button
               type="button"
               onClick={ () => changeStatus('2') }
               data-testid="seller_order_details__button-preparing-check"
               disabled={ status !== arrayStatus[0] }
               text="PREPARAR PEDIDO"
-              backgroundColor="#964b00"
+              backgroundColor="#995bd5"
               textColor="white"
             />
             <Button
@@ -117,7 +115,7 @@ function OrderDetails({ history, match }) {
               backgroundColor="#ffa500"
               textColor="white"
             />
-          </div>
+          </>
         )}
       </div>
       <OrderDescription

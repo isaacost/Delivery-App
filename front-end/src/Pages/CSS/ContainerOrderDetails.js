@@ -3,17 +3,21 @@ import styled from 'styled-components';
 const ContainerOrdersDetails = styled.div`
   #order-details {
     display: flex;
-    flex-direction: column;
     padding: 16px;
     gap: 16px;
-    div {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+    width: 60%;
+    margin: 30px auto;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.5em;
+
+    background-color: #495057;
+    border-radius: 12px;
     button {
-      width: 35%;
-      margin: 0 auto;
+      width: 15%;
+      font-size: 1.5rem;
     }
   }
 `;

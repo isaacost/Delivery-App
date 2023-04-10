@@ -34,6 +34,10 @@ const StyledTableOrder = styled.div`
     padding: 15px;
     border: 1px solid #CCCCCC;
   }
+  #total-price {
+    font-size: 2em;
+    font-weight: 900;
+  }
 `;
 
 export default StyledTableOrder;

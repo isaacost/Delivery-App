@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import formatValues, { formatDate } from '../Utils/normalize';
 import StyledOrderCard from './CSS/StyledOrderCard';
+import colorManager from '../Utils/colorManager';
 
 function OrderCard({ id, status, saleDate, totalPrice, role, address, numberHouse }) {
   return (
@@ -14,7 +15,7 @@ function OrderCard({ id, status, saleDate, totalPrice, role, address, numberHous
             {id}
           </span>
         </div>
-        <div>
+        <div className={ `status ${colorManager(status)}` }>
           <span
             data-testid={ `${role}_orders__element-delivery-status-${id}` }
           >
@@ -34,7 +35,7 @@ function OrderCard({ id, status, saleDate, totalPrice, role, address, numberHous
           </p>
         </div>
         { role === 'seller' && (
-          <div>
+          <div className="adress">
             <p
               data-testid={ `seller_orders__element-card-address-${id}` }
             >
