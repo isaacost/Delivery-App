@@ -5,7 +5,7 @@ const StyledNavBar = styled.nav`
   justify-content: space-between;
   align-items: center;
   height: 10vh;
-  background-color: #212529;
+  background-color: #000;
   font-size: 1.4em;
   font-weight: 900;
   padding: 0 15px;

@@ -83,7 +83,7 @@ function OrderDescription({ history, orders, totalPrice, updateCart }) {
           ))}
         </tbody>
       </table>
-      <div>
+      <div id="total-price">
         Total: R$
         <span data-testid={ `${role}_${path}__element-order-total-price` }>
           {totalPrice}
